@@ -1,6 +1,6 @@
 from fastapi import APIRouter, FastAPI
 
-from app.api.v1.endpoint import NSTW, oracle
+from apps.pyserver.app.api.v1.NSTW import NSTW, oracle
 
 api_router = APIRouter()
 app = FastAPI()
