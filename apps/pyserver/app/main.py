@@ -11,7 +11,7 @@ from fastapi.responses import StreamingResponse
 from starlette.responses import RedirectResponse
 
 import objectdetection
-from api.v1 import api_router
+from api.v1.router import api_router
 
 TENSORFLOW_URL = "http://tensorflow:8501/v1/models/rfcn:predict"
 
