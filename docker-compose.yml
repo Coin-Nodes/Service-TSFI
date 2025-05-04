@@ -5,7 +5,7 @@ services:
     container_name: pyserver
     build:
       context: ./apps/pyserver
-      target: debug
+      target: prod
     ports:
       - 5000:5000
     networks:
