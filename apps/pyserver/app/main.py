@@ -1,6 +1,6 @@
 ##################################################
-##  Author: Tiago Prata (https://github.com/TiagoPrata)
-##  Date: 22-Mar-2021
+##  Author:
+##  Date:
 ##################################################
 
 import uvicorn
