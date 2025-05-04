@@ -10,7 +10,7 @@ TENSORFLOW_URL = "http://tensorflow:8501/v1/models/rfcn:predict"
 router = APIRouter()
 
 
-@router.get("/hello")
+@router.get("/oi")
 def hello():
     return {"hello": "world"}
 
