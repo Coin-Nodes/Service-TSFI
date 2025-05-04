@@ -1,27 +1,33 @@
 ##################################################
-##  Author: Tiago Prata (https://github.com/TiagoPrata)
-##  Date: 22-Mar-2021
+##  Author:
+##  Date:
 ##################################################
+
+import io
 
 import uvicorn
 from fastapi import FastAPI, File, UploadFile
-from starlette.responses import RedirectResponse
 from fastapi.responses import StreamingResponse
-import io
+from starlette.responses import RedirectResponse
 
 import objectdetection
+from api.v1 import api_router
 
 TENSORFLOW_URL = "http://tensorflow:8501/v1/models/rfcn:predict"
 
 app = FastAPI(
-    title="Python web server and TensorFlow",
-    description="This web interface allows image uploading for a TensorFlow container running a R-FCN pre-trained model for object identification",
+    title="Trained System for Feature Identification - TSFI",
+    description="wwww.coinnodes.tech -allows image uploading for a TensorFlow container running a R-FCN pre-trained model for object identification",
     version="1.0.0",
 )
+
+app.include_router(api_router, prefix="/api/v1")
+
 
 @app.get("/")
 def home_screen():
     return RedirectResponse(url='/docs')
+
 
 @app.post("/get_predictions/")
 async def get_predictions(file: UploadFile = File(...)):
@@ -33,6 +39,7 @@ async def get_predictions(file: UploadFile = File(...)):
     r = objectdetection.get_predictions(image_file, TENSORFLOW_URL)
 
     return r
+
 
 @app.post("/get_predicted_image/")
 async def get_predicted_image(file: UploadFile = File(...), detections_limit: int = 20):
@@ -49,12 +56,12 @@ async def get_predicted_image(file: UploadFile = File(...), detections_limit: in
         extension = file.filename.split(".")[-1]
         filename = "".join([filename, " (processed).", extension])
 
-        return StreamingResponse(io.BytesIO(processed_image), headers={'Content-Disposition': 'attachment; filename=' + filename}, media_type="image/jpg")
+        return StreamingResponse(io.BytesIO(processed_image),
+                                 headers={'Content-Disposition': 'attachment; filename=' + filename},
+                                 media_type="image/jpg")
 
     except Exception as e:
         return {"error": str(e)}
-
-
 
 
 if __name__ == "__main__":
