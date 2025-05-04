@@ -25,4 +25,4 @@ CMD ["python", "-m", "ptvsd", "--host", "0.0.0.0", "--port", "5678", \
 FROM base as prod
 
 WORKDIR /app
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000", "--reload"]
