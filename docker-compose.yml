@@ -2,6 +2,7 @@ version: '3'
 
 services:
   pyserver:
+    container_name: pyserver
     build:
       context: ./apps/pyserver
       target: prod
@@ -11,6 +12,7 @@ services:
       - objid-network
 
   tensorflow:
+    container_name: tensorflow
     image: tensorflow/serving:latest
     ports:
       - 8500:8500
