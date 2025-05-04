@@ -1,6 +1,6 @@
 ##################################################
-##  Author:
-##  Date:
+##  Author: Tiago Prata (https://github.com/TiagoPrata)
+##  Date: 22-Mar-2021
 ##################################################
 
 import uvicorn
@@ -9,18 +9,15 @@ from starlette.responses import RedirectResponse
 from fastapi.responses import StreamingResponse
 import io
 
-from api.v1.router import api_router
 import objectdetection
 
 TENSORFLOW_URL = "http://tensorflow:8501/v1/models/rfcn:predict"
 
 app = FastAPI(
-    title="Trained System for Feature Identification - TSFI",
-    description="www.coinnodes.com.br - Interface Web allows image uploading for a TensorFlow container running a R-FCN pre-trained model for object identification",
+    title="Python web server and TensorFlow",
+    description="This web interface allows image uploading for a TensorFlow container running a R-FCN pre-trained model for object identification",
     version="1.0.0",
 )
-
-app.include_router(api_router, prefix="/api/v1")
 
 @app.get("/")
 def home_screen():
