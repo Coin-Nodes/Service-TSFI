@@ -42,13 +42,17 @@ async def get_predicted_image(file: UploadFile = File(...), detections_limit: in
 
     - **detections_limit** [int]: Define the limit of objects to be ploted in the returning image.
     """
-    image_file = await file.read()
-    processed_image = objectdetection.get_predicted_image(image_file, TENSORFLOW_URL, detections_limit)
-    filename = file.filename.split(".")[0]
-    extension = file.filename.split(".")[-1]
-    filename = "".join([filename, " (processed).", extension])
+    try:
+        image_file = await file.read()
+        processed_image = objectdetection.get_predicted_image(image_file, TENSORFLOW_URL, detections_limit)
+        filename = file.filename.split(".")[0]
+        extension = file.filename.split(".")[-1]
+        filename = "".join([filename, " (processed).", extension])
 
-    return StreamingResponse(io.BytesIO(processed_image), headers={'Content-Disposition': 'attachment; filename=' + filename}, media_type="image/jpg")
+        return StreamingResponse(io.BytesIO(processed_image), headers={'Content-Disposition': 'attachment; filename=' + filename}, media_type="image/jpg")
+
+    except Exception as e:
+        return {"error": str(e)}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=5000)
