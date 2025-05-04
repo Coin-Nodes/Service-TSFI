@@ -6,7 +6,7 @@ services:
       context: ./apps/pyserver
       target: prod
     ports:
-      - 8080:80
+      - 5000:5000
     networks:
       - objid-network
 
