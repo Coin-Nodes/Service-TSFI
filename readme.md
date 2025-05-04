@@ -17,21 +17,16 @@
 
 ## How to use
 
-1. Clone this repository:
+
+1. **Start containers:
 
     ```shell
-    git clone https://github.com/TiagoPrata/FastAPI-TensorFlow-Docker.git
-    ```
-
-2. Start containers:
-
-    ```shell
-    docker-compose -f docker-compose.prod.yml up -d
+    docker-compose -f docker-compose.yml up -d
     ```
 
     *Note:* Edit the yml file to adjust the number of cores before starting the containers.
 
-3. **That's it!** Now go to [http://localhost:5000](http://localhost:5000) and use it.
+2. **That's it!** Now go to [http://localhost:5000](http://localhost:5000) and use it.
 
 <br>
 
@@ -76,7 +71,7 @@ After any package update, re-export the Python dependencies.
 3. Start the new containers:
 
     ```shell
-    docker-compose -f docker-compose.prod.yml up -d
+    docker-compose -f docker-compose.yml up -d
     ```
 
 ### Debugging (bare metal)

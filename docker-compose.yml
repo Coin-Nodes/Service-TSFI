@@ -6,12 +6,12 @@ services:
       context: ./apps/pyserver
       target: prod
     ports:
-      - 5000:5000
+      - 80:80
     networks:
       - objid-network
 
   tensorflow:
-    image: intel/intel-optimized-tensorflow-serving:2.4.0
+    image: tensorflow/serving:latest
     ports:
       - 8500:8500
       - 8501:8501
