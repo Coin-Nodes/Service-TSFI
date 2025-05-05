@@ -1,10 +1,12 @@
 from fastapi import APIRouter
 from fastapi import APIRouter, UploadFile, File
-
+from nsfw_detector import predict
 from core.use_case.nstw.crud import CRUDNstw
+from PIL import Image
+import io
 
 TENSORFLOW_URL = "http://tensorflow:8501/v1/models/rfcn:predict"
-
+model = predict.load_model("/app/nsfw_model")
 router = APIRouter()
 
 
@@ -25,3 +27,12 @@ async def detect_nstw(file: UploadFile = File(...)):
         return result
     except Exception as e:
         return {"error": str(e)}
+
+
+
+def detect_nsfw_labels(image_bytes: bytes):
+    image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    tmp_path = "/tmp/tmp.jpg"
+    image.save(tmp_path)
+    result = predict.classify(model, tmp_path)
+    return result
