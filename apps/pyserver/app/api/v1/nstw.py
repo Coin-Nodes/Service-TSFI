@@ -46,15 +46,15 @@ model = predict.load_model("/app/nsfw_model/nsfw_mobilenet2.224x224.h5")
 @router.post("/nsfw/")
 async def detect_nsfw_labels(file: UploadFile = File(...)):
     """
-    NSFW Model: Detects Explicit or Implicit Pornography com um índice mais detalhado
-    Modelo mais rápido, mas pode ser menos sensíveis em relação a detecção leve de pornografia
+    NSFW Model: Detects Explicit or Implicit Pornography with a More Detailed Index
+    Faster model, but may be less sensitive to soft porn detection
 
-    categorias detectadas:
-        "drawings": 0.0057229697704315186,
+    Categories detected:
+        drawings: 0.0057229697704315186,
         "hentai": 0.0005879989475943148,
         "neutral": 0.3628992736339569,
         "porn": 0.011622844263911247,
-        "sexy": 0.619166910648346
+        sexy: 0.619166910648346
 
     """
     try:
