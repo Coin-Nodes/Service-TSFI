@@ -6,7 +6,6 @@ from PIL import Image
 import io
 
 TENSORFLOW_URL = "http://tensorflow:8501/v1/models/rfcn:predict"
-model = predict.load_model("/app/nsfw_model")
 router = APIRouter()
 
 
@@ -29,7 +28,7 @@ async def detect_nstw(file: UploadFile = File(...)):
         return {"error": str(e)}
 
 
-
+model = predict.load_model("/app/nsfw_model/saved_model.h5")
 def detect_nsfw_labels(image_bytes: bytes):
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
     tmp_path = "/tmp/tmp.jpg"
