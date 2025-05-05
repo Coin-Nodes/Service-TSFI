@@ -28,7 +28,7 @@ async def detect_nstw(file: UploadFile = File(...)):
         return {"error": str(e)}
 
 
-# model = predict.load_model("/app/nsfw_model/nsfw_mobilenet2.224x224.h5")
+model = predict.load_model("/app/nsfw_model/nsfw_mobilenet2.224x224.h5")
 
 def detect_nsfw_labels(image_bytes: bytes):
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
