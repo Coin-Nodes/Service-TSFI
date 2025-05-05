@@ -19,7 +19,7 @@ class CRUDNstw:
         prediction = model.predict(processed_image[None, ...])[0][0]
 
         # Define o limiar para considerar como NSFW
-        threshold = 0.7
+        threshold = 0.9
         is_nsfw = bool(prediction >= threshold)
         detail = f"Probabilidade NSFW: {prediction:.2f}"
 
