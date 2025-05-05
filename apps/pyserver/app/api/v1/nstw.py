@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi import APIRouter, UploadFile, File
 
-from core.use_case.oracle.crud import CRUDNstw
+from core.use_case.nstw.crud import CRUDNstw
 
 TENSORFLOW_URL = "http://tensorflow:8501/v1/models/rfcn:predict"
 
