@@ -5,7 +5,7 @@ from starlette.responses import RedirectResponse
 import io
 
 
-from app.core.use_case.oracle.crud import CRUDOracle
+from core.use_case.oracle.crud import CRUDOracle
 
 TENSORFLOW_URL = "http://tensorflow:8501/v1/models/rfcn:predict"
 
