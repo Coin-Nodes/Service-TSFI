@@ -30,10 +30,18 @@ async def detect_nstw(file: UploadFile = File(...)):
 
 model = predict.load_model("/app/nsfw_model/nsfw_mobilenet2.224x224.h5")
 
+
 @router.post("/nsfw/")
-def detect_nsfw_labels(image_bytes: bytes):
-    image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-    tmp_path = "/tmp/tmp.jpg"
-    image.save(tmp_path)
-    result = predict.classify(model, tmp_path)
-    return result
+async def detect_nsfw_labels(file: UploadFile = File(...)):
+    """
+    Detecta se uma imagem contém conteúdo NSFW.
+    """
+    try:
+        image_bytes = await file.read()
+        image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+        tmp_path = "/tmp/tmp.jpg"
+        image.save(tmp_path)
+        result = predict.classify(model, tmp_path)
+        return result
+    except Exception as e:
+        return {"error": str(e)}
