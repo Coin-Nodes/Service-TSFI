@@ -20,7 +20,7 @@ class CRUDNstw:
 
         # Define o limiar para considerar como NSFW
         threshold = 0.7
-        is_nsfw = prediction >= threshold
+        is_nsfw = bool(prediction >= threshold)
         detail = f"Probabilidade NSFW: {prediction:.2f}"
 
         return {"nsfw": is_nsfw, "detail": detail}
