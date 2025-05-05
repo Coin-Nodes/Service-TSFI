@@ -16,6 +16,7 @@ numpy = "*"
 Pillow = "*"
 requests = "*"
 opencv-python = "*"
+opennsfw2= "*"
 
 [requires]
 python_version = "3.8"
